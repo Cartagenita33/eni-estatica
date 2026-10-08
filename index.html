@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela Nacional de Instructores (ENI) - SENA Colombia</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts - Work Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sena-green: #39A900;
+            --sena-green-hover: #2e8800;
+            --sena-navy: #00324D;
+            --sena-dark-green: #003300;
+            --sena-light-gray: #f4f7f6;
+            --sena-gold: #fcb900;
+            --sena-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --sena-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: #333333;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Buttons */
+        .btn-sena {
+            background-color: var(--sena-green);
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 28px;
+            border: 2px solid var(--sena-green);
+            transition: var(--sena-transition);
+            box-shadow: 0 4px 15px rgba(57, 169, 0, 0.3);
+        }
+
+        .btn-sena:hover {
+            background-color: var(--sena-green-hover);
+            border-color: var(--sena-green-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(57, 169, 0, 0.4);
+        }
+
+        .btn-sena-outline {
+            background-color: transparent;
+            color: var(--sena-navy);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 28px;
+            border: 2px solid var(--sena-navy);
+            transition: var(--sena-transition);
+        }
+
+        .btn-sena-outline:hover {
+            background-color: var(--sena-navy);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-sena-light {
+            background-color: #ffffff;
+            color: var(--sena-navy);
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 10px 28px;
+            border: 2px solid #ffffff;
+            transition: var(--sena-transition);
+        }
+
+        .btn-sena-light:hover {
+            background-color: var(--sena-light-gray);
+            color: var(--sena-green);
+            transform: translateY(-2px);
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 12px 0;
+            transition: var(--sena-transition);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .navbar-brand img {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--sena-navy) !important;
+            margin: 0 8px;
+            position: relative;
+            transition: var(--sena-transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--sena-green);
+            transition: var(--sena-transition);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--sena-green) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 50, 77, 0.94) 0%, rgba(0, 30, 48, 0.96) 100%), 
+                        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            color: #ffffff;
+            padding: 140px 0 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(57, 169, 0, 0.15);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .badge-eni {
+            background-color: rgba(57, 169, 0, 0.2);
+            color: #72ef36;
+            border: 1px solid rgba(57, 169, 0, 0.4);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: var(--sena-transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--sena-green);
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #72ef36;
+            line-height: 1.1;
+        }
+
+        /* Pillar Cards */
+        .pillar-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px 25px;
+            box-shadow: var(--sena-shadow);
+            border: 1px solid #f0f0f0;
+            transition: var(--sena-transition);
+            height: 100%;
+            position: relative;
+            top: 0;
+        }
+
+        .pillar-card:hover {
+            top: -8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: rgba(57, 169, 0, 0.3);
+        }
+
+        .pillar-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: rgba(57, 169, 0, 0.1);
+            color: var(--sena-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 22px;
+            transition: var(--sena-transition);
+        }
+
+        .pillar-card:hover .pillar-icon {
+            background: var(--sena-green);
+            color: #ffffff;
+            transform: rotateY(180deg);
+        }
+
+        /* Filter Pills */
+        .filter-btn {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            color: #555555;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 4px;
+            transition: var(--sena-transition);
+            cursor: pointer;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--sena-navy);
+            color: #ffffff;
+            border-color: var(--sena-navy);
+            box-shadow: 0 4px 12px rgba(0, 50, 77, 0.2);
+        }
+
+        /* Course Cards */
+        .course-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--sena-shadow);
+            transition: var(--sena-transition);
+            background: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+        }
+
+        .course-img-wrapper {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .course-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .course-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .badge-modality {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bg-virtual { background-color: #0d6efd; color: #fff; }
+        .bg-presencial { background-color: #198754; color: #fff; }
+        .bg-hibrido { background-color: #fd7e14; color: #fff; }
+
+        .course-body {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: flex-col;
+            justify-content: space-between;
+        }
+
+        /* Timeline / Development Pathway */
+        .timeline-step {
+            position: relative;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: var(--sena-shadow);
+            margin-bottom: 25px;
+            border-left: 5px solid var(--sena-green);
+            transition: var(--sena-transition);
+        }
+
+        .timeline-step:hover {
+            transform: translateX(8px);
+        }
+
+        .timeline-number {
+            width: 42px;
+            height: 42px;
+            background: var(--sena-navy);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials Carousel */
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: var(--sena-shadow);
+            margin: 15px 10px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--sena-green);
+        }
+
+        /* Accordion FAQ */
+        .accordion-item {
+            border: none;
+            margin-bottom: 15px;
+            border-radius: 12px !important;
+            box-shadow: var(--sena-shadow);
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            color: var(--sena-navy);
+            padding: 20px 25px;
+            background-color: #ffffff;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--sena-green);
+            background-color: rgba(57, 169, 0, 0.05);
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,0.125);
+        }
+
+        /* Registration Form Section */
+        .form-container {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .form-control, .form-select {
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid #dde2e5;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--sena-green);
+            box-shadow: 0 0 0 0.25rem rgba(57, 169, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--sena-navy);
+            color: #a0b2be;
+            padding: 70px 0 30px;
+        }
+
+        footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 35px;
+            height: 3px;
+            background-color: var(--sena-green);
+            border-radius: 2px;
+        }
+
+        footer a {
+            color: #a0b2be;
+            text-decoration: none;
+            transition: var(--sena-transition);
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            margin-right: 10px;
+            transition: var(--sena-transition);
+        }
+
+        .social-icon:hover {
+            background: var(--sena-green);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* Video Container */
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--sena-shadow);
+        }
+
+        .play-btn-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75px;
+            height: 75px;
+            background: var(--sena-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(57, 169, 0, 0.6);
+            transition: var(--sena-transition);
+        }
+
+        .play-btn-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--sena-green-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#inicio">
+                <!-- SENA Logo Placeholder SVG/Graphic -->
+                <svg width="45" height="45" viewBox="0 0 100 100" class="me-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="22" r="14" fill="#39A900"/>
+                    <circle cx="50" cy="50" r="8" fill="#00324D"/>
+                    <path d="M20 82 C30 55, 45 55, 50 70 C55 55, 70 55, 80 82 Z" fill="#39A900"/>
+                </svg>
+                <div class="lh-1">
+                    <span class="fw-bold d-block text-dark fs-5" style="letter-spacing: -0.5px;">SENA</span>
+                    <span class="text-success fw-semibold small" style="font-size: 0.75rem; letter-spacing: 1px;">ESCUELA NACIONAL DE INSTRUCTORES</span>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarENI">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarENI">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#oferta">Capacitaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rutas">Rutas Formativas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">Preguntas</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-sena btn-sm px-4" href="#inscripcion">
+                            <i class="bi bi-pencil-square me-1"></i> Convocatorias
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero-section">
+        <div class="container position-relative z-1">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <span class="badge-eni mb-3"><i class="bi bi-award-fill me-2"></i>Excelencia e Innovación Pedagógica</span>
+                    <h1 class="display-4 text-white mb-3">Transformando la Formación Profesional de Colombia</h1>
+                    <p class="lead text-light opacity-90 mb-4 pe-lg-4">
+                        La <strong>Escuela Nacional de Instructores (ENI) Rodolfo Martínez Tono</strong> lidera el desarrollo integral, la actualización tecnológica y la excelencia pedagógica de más de 35.000 instructores SENA.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                        <a href="#oferta" class="btn btn-sena">
+                            <i class="bi bi-book-half me-2"></i>Ver Oferta Formativa
+                        </a>
+                        <a href="#inscripcion" class="btn btn-sena-light">
+                            <i class="bi bi-person-check-fill me-2"></i>Inscribirme Ahora
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-number" id="stat1">35,000+</div>
+                                <div class="small text-light opacity-75 mt-1">Instructores Capacitados</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-number" id="stat2">180+</div>
+                                <div class="small text-light opacity-75 mt-1">Rutas y Programas</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-number">100%</div>
+                                <div class="small text-light opacity-75 mt-1">Gratuito e Institucional</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-number" id="stat3">33</div>
+                                <div class="small text-light opacity-75 mt-1">Regionales Conectadas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & MISSION SECTION -->
+    <section id="nosotros" class="py-5 bg-light position-relative">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div class="video-wrapper position-relative">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000" alt="Instructores SENA en Capacitación" class="img-fluid w-100">
+                        <div class="play-btn-overlay" onclick="openVideoModal()">
+                            <i class="bi bi-play-fill ms-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 1px;">Misión y Propósito</span>
+                    <h2 class="text-navy mt-1 mb-4" style="color: var(--sena-navy);">Impulsamos la cualificación de los instructores SENA con estándares globales</h2>
+                    <p class="text-secondary fs-6 mb-4">
+                        La Escuela Nacional de Instructores coordina la política institucional de formación, actualización y perfeccionamiento técnico-pedagógico para garatizar un aprendizaje de alta calidad en todos los centros de formación de Colombia.
+                    </p>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Pedagogía Vanguardista</h6>
+                                    <p class="small text-muted mb-0">Modelos didácticos por competencias y aprendizaje experiencial.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Transferencia Tecnológica</h6>
+                                    <p class="small text-muted mb-0">Actualización en Industria 4.0, IA y tecnologías limpias.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillars -->
+            <div class="row g-4 mt-5">
+                <div class="col-md-6 col-lg-3">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-journal-bookmark-fill"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Pedagogía y Didáctica</h5>
+                        <p class="text-muted small">Estrategias efectivas de enseñanza, evaluación por competencias y gestión del aula inclusiva.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-cpu-fill"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Innovación Técnica</h5>
+                        <p class="text-muted small">Especialización de alto nivel en áreas técnicas emergentes, robótica, agroindustria y TIC.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-lightbulb-fill"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Investigación SENNOVA</h5>
+                        <p class="text-muted small">Fomento a la investigación aplicada, desarrollo tecnológico e innovación pedagógica.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Habilidades Socioemocionales</h5>
+                        <p class="text-muted small">Liderazgo docente, comunicación asertiva, resiliencia y bienestar laboral del instructor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING OFFER SECTION -->
+    <section id="oferta" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 1px;">Programas Disponibles</span>
+                <h2 style="color: var(--sena-navy);">Oferta Formativa de Cualificación</h2>
+                <p class="text-muted">Explora los programas de actualización técnica, pedagógica y transversal diseñados para potenciar tu labor académica.</p>
+                
+                <!-- Interactive Filter Buttons -->
+                <div class="d-flex flex-wrap justify-content-center mt-4" id="filter-container">
+                    <button class="filter-btn active" data-filter="all">Todas las Ofertas</button>
+                    <button class="filter-btn" data-filter="pedagogia">Pedagogía & Didáctica</button>
+                    <button class="filter-btn" data-filter="tic">Tecnologías & IA</button>
+                    <button class="filter-btn" data-filter="tecnica">Especialización Técnica</button>
+                    <button class="filter-btn" data-filter="idiomas">Idiomas & Bilingüismo</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Course Cards Grid -->
+            <div class="row g-4" id="courses-grid">
+                <!-- Course 1 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="tic">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600" alt="IA Educativa">
+                            <span class="badge-modality bg-virtual">Virtual</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Tecnologías & IA</span>
+                                <h5 class="fw-bold text-dark mb-2">Inteligencia Artificial Aplicada a la Docencia</h5>
+                                <p class="text-muted small mb-3">Uso ético de LLMs, generación de recursos didácticos automatizados y evaluación asistida por IA.</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>40 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 15 Oct</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Inteligencia Artificial Aplicada a la Docencia', 'Tecnologías & IA', '40 Horas', 'Virtual (Territorium / Teams)', 'Conocimientos básicos de herramientas informáticas y manejo de entornos virtuales.', 'Aprenderás a integrar prompts avanzados, ChatGPT y Copilot para la elaboración de guías de aprendizaje y evaluaciones personalizadas.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="pedagogia">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=600" alt="Pedagogía por Proyectos">
+                            <span class="badge-modality bg-hibrido">Híbrido</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Pedagogía & Didáctica</span>
+                                <h5 class="fw-bold text-dark mb-2">Diseño Curricular por Competencias y ABP</h5>
+                                <p class="text-muted small mb-3">Estrategias de Aprendizaje Basado en Proyectos (ABP) alineadas al modelo pedagógico institucional SENA.</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>60 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 20 Oct</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Diseño Curricular por Competencias y ABP', 'Pedagogía & Didáctica', '60 Horas', 'Híbrido (Sesiones presenciales + Plataforma)', 'Ser instructor activo de planta o contratista con al menos 1 año de experiencia.', 'Profundizarás en el diseño de guías formativas, rubricas socioformativas e instrumentos de evaluación por competencias.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="tecnica">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600" alt="Industria 4.0">
+                            <span class="badge-modality bg-presencial">Presencial</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Especialización Técnica</span>
+                                <h5 class="fw-bold text-dark mb-2">Automatización e Industria 4.0</h5>
+                                <p class="text-muted small mb-3">Programación de PLC avanzados, sensores IoT industriales y mantenimiento 4.0 en laboratorios SENA.</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>80 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 01 Nov</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Automatización e Industria 4.0', 'Especialización Técnica', '80 Horas', 'Presencial (Tecnoparque / Centro de Formación)', 'Pertenecer a la red de formación de Electricidad, Electrónica o Automatización.', 'Inmersión práctica con brazos robóticos, controladores lógicos programables y plataformas en la nube para procesos industriales.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="idiomas">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=600" alt="Bilingüismo Docente">
+                            <span class="badge-modality bg-virtual">Virtual</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Idiomas & Bilingüismo</span>
+                                <h5 class="fw-bold text-dark mb-2">Metodología CLIL para Enseñanza Bilingüe</h5>
+                                <p class="text-muted small mb-3">Aprendizaje Integrado de Contenidos y Lenguas Extranjeras (English for Technical Teaching).</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>50 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 25 Oct</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Metodología CLIL para Enseñanza Bilingüe', 'Idiomas & Bilingüismo', '50 Horas', 'Virtual', 'Nivel mínimo de inglés B1 según Marco Común Europeo.', 'Estrategias pedagógicas para imparte sesiones de formación técnica en idioma inglés de forma dinámica y efectiva.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="pedagogia">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Inclusión Docente">
+                            <span class="badge-modality bg-virtual">Virtual</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Pedagogía & Didáctica</span>
+                                <h5 class="fw-bold text-dark mb-2">Diseño Universal para el Aprendizaje (DUA)</h5>
+                                <p class="text-muted small mb-3">Estrategias de educación inclusiva y adaptación de contenidos para aprendices con capacidades diversas.</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>40 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 05 Nov</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Diseño Universal para el Aprendizaje (DUA)', 'Pedagogía & Didáctica', '40 Horas', 'Virtual Synchronous', 'Abierto a todas las áreas de formación.', 'Proporcionará pautas prácticas para crear ambientes de aprendizaje flexibles que eliminen barreras cognitivas y físicas.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="col-md-6 col-lg-4 course-item" data-category="tecnica">
+                    <div class="course-card">
+                        <div class="course-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&q=80&w=600" alt="Energías Renovables">
+                            <span class="badge-modality bg-hibrido">Híbrido</span>
+                        </div>
+                        <div class="course-body">
+                            <div>
+                                <span class="text-success fw-semibold small d-block mb-1">Especialización Técnica</span>
+                                <h5 class="fw-bold text-dark mb-2">Sistemas Fotovoltaicos e Hidrógeno Verde</h5>
+                                <p class="text-muted small mb-3">Dimensionamiento, instalación y transferencia tecnológica en energías limpias para transición energética.</p>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center border-top pt-3 text-muted small mb-3">
+                                    <span><i class="bi bi-clock me-1"></i>70 Horas</span>
+                                    <span><i class="bi bi-calendar-event me-1"></i>Inicia: 10 Nov</span>
+                                </div>
+                                <button class="btn btn-sena-outline btn-sm w-100" onclick="showCourseDetails('Sistemas Fotovoltaicos e Hidrógeno Verde', 'Especialización Técnica', '70 Horas', 'Híbrido', 'Pertenecer a redes de energía, ambiente o construcción.', 'Conocimiento práctico sobre el desarrollo y modernización de ambientes de aprendizaje orientados a la sostenibilidad ambiental.')">
+                                    Ver Detalle / Postularse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPMENT PATHWAY / TIMELINE -->
+    <section id="rutas" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-5">
+                    <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 1px;">Ruta Institucional</span>
+                    <h2 class="mb-4" style="color: var(--sena-navy);">Ruta Integral de Desarrollo del Instructor SENA</h2>
+                    <p class="text-secondary mb-4">
+                        Acompañamos a nuestros instructores desde su vinculación, garantizando un crecimiento continuo en su perfil pedagógico, técnico y humano.
+                    </p>
+                    <a href="#inscripcion" class="btn btn-sena">
+                        <i class="bi bi-arrow-right-circle me-2"></i>Iniciar Mi Ruta Formativa
+                    </a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="timeline-step">
+                        <div class="timeline-number">1</div>
+                        <h5 class="fw-bold text-dark mb-1">Ingreso e Inducción Pedagógica</h5>
+                        <p class="text-muted small mb-0">Bienvenida institucional, apropiación de la identidad SENA, estatuto docente y fundamentos pedagógicos institucionales.</p>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-number">2</div>
+                        <h5 class="fw-bold text-dark mb-1">Diagnóstico de Competencias Docentes</h5>
+                        <p class="text-muted small mb-0">Evaluación de necesidades formativas individuales y de la red de conocimiento para planificar la cualificación.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-number">3</div>
+                        <h5 class="fw-bold text-dark mb-1">Cualificación Técnica y Pedagógica</h5>
+                        <p class="text-muted small mb-0">Participación en cursos, diplomados, pasantías nacionales e internacionales y transferencia tecnológica.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-number">4</div>
+                        <h5 class="fw-bold text-dark mb-1">Certificación y Transferencia al Aula</h5>
+                        <p class="text-muted small mb-0">Certificación formal y aplicación directa de lo aprendido en el diseño e impartición de ambientes de aprendizaje.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonios" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 1px;">Casos de Éxito</span>
+                <h2 style="color: var(--sena-navy);">Voces de los Instructores SENA</h2>
+                <p class="text-muted">Conoce el impacto de las capacitaciones de la ENI en la práctica docente en diversas regiones del país.</p>
+            </div>
+
+            <!-- Testimonial Carousel -->
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="testimonial-card text-center">
+                                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200" alt="Instructor 1" class="testimonial-img mb-3 mx-auto">
+                                    <p class="lead italic text-dark opacity-90 mb-4">"Gracias a la formación en IA aplicada de la ENI, transformé completamente mis talleres didácticos. Mis aprendices están más motivados y el nivel de innovación en sus proyectos aumentó exponencialmente."</p>
+                                    <h6 class="fw-bold mb-0 text-success">Ing. María Fernanda Gómez</h6>
+                                    <small class="text-muted">Instructora Red de Software - Regional Antioquia</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="testimonial-card text-center">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200" alt="Instructor 2" class="testimonial-img mb-3 mx-auto">
+                                    <p class="lead italic text-dark opacity-90 mb-4">"La pasantía internacional gestionada a través de la Escuela Nacional de Instructores nos permitió actualizar los laboratorios de agroindustria con estándares de economía circular."</p>
+                                    <h6 class="fw-bold mb-0 text-success">Carlos Alberto Martínez</h6>
+                                    <small class="text-muted">Instructor Agroindustrial - Regional Valle</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="testimonial-card text-center">
+                                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=200" alt="Instructor 3" class="testimonial-img mb-3 mx-auto">
+                                    <p class="lead italic text-dark opacity-90 mb-4">"El acompañamiento de la ENI en habilidades socioemocionales me dio herramientas fundamentales para la gestión pacífica de conflictos y la inclusión efectiva en el aula."</p>
+                                    <h6 class="fw-bold mb-0 text-success">Luz Adriana Ramírez</h6>
+                                    <small class="text-muted">Instructora de Comercio y Servicios - Regional Distrito Capital</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-success fw-bold text-uppercase small" style="letter-spacing: 1px;">Resolvemos tus dudas</span>
+                <h2 style="color: var(--sena-navy);">Preguntas Frecuentes</h2>
+                <p class="text-muted">Respuestas a las consultas más habituales sobre los cursos y certificaciones de la ENI.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="accordion" id="faqAccordion">
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                                    <i class="bi bi-question-circle text-success me-2"></i> ¿Quiénes pueden participar en los cursos de la ENI?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Todos los instructores activos del SENA a nivel nacional, tanto de planta como contratistas de prestación de servicios, que se encuentren registrados en el sistema de gestión académica institucional.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    <i class="bi bi-question-circle text-success me-2"></i> ¿Las capacitaciones tienen algún costo?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    No, el 100% de las ofertas formativas, talleres, diplomados y eventos de actualización organizados por la Escuela Nacional de Instructores son totalmente gratuitos y financiados de forma institucional.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    <i class="bi bi-question-circle text-success me-2"></i> ¿Cómo y dónde obtengo mi certificado de aprobación?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Una vez completado con éxito el programa y cumplido el porcentaje mínimo de asistencia y aprobación de evidencias, el certificado estará disponible para descarga directa a través de la plataforma institucional Sofía Plus.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    <i class="bi bi-question-circle text-success me-2"></i> ¿Puedo inscribirme a más de un curso simultáneamente?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Se recomienda inscribirse en un solo programa por convocatoria para garantizar la dedicación de horas requerida y no interferir con las actividades lectivas en los Centros de Formación.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION FORM SECTION -->
+    <section id="inscripcion" class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="form-container">
+                        <div class="text-center mb-4">
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-bold mb-2">Convocatoria Abierta</span>
+                            <h2 style="color: var(--sena-navy);">Formulario de Pre-Inscripción</h2>
+                            <p class="text-muted">Completa el formulario para postularte a las próximas rutas formativas de la Escuela Nacional de Instructores.</p>
+                        </div>
+
+                        <form id="registrationForm" onsubmit="handleRegistration(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fullName" class="form-label fw-semibold">Nombre Completo <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Ej. Ana María Rodríguez" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="docNumber" class="form-label fw-semibold">Número de Documento <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="docNumber" placeholder="C.C. / Pasaporte" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="senaEmail" class="form-label fw-semibold">Correo Institucional (@sena.edu.co) <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="senaEmail" placeholder="usuario@sena.edu.co" pattern="[a-zA-Z0-0._%+-]+@sena\.edu\.co$" title="Debe usar un correo institucional válido terminado en @sena.edu.co" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label fw-semibold">Teléfono de Contacto <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="300 123 4567" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="regional" class="form-label fw-semibold">Regional SENA <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="regional" required>
+                                        <option value="" selected disabled>Selecciona tu regional...</option>
+                                        <option value="Antioquia">Regional Antioquia</option>
+                                        <option value="Bogota">Regional Distrito Capital</option>
+                                        <option value="Valle">Regional Valle</option>
+                                        <option value="Santander">Regional Santander</option>
+                                        <option value="Atlantico">Regional Atlántico</option>
+                                        <option value="Otras">Otra Regional</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="centerName" class="form-label fw-semibold">Centro de Formación <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="centerName" placeholder="Ej. Centro multisectorial..." required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="interestArea" class="form-label fw-semibold">Área o Programa de Interés <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="interestArea" required>
+                                        <option value="" selected disabled>Selecciona el programa al que deseas aplicar...</option>
+                                        <option value="IA Docencia">Inteligencia Artificial Aplicada a la Docencia</option>
+                                        <option value="Diseño Curricular">Diseño Curricular por Competencias y ABP</option>
+                                        <option value="Industria 4.0">Automatización e Industria 4.0</option>
+                                        <option value="Bilinguismo">Metodología CLIL para Enseñanza Bilingüe</option>
+                                        <option value="DUA">Diseño Universal para el Aprendizaje (DUA)</option>
+                                        <option value="Energias Renovables">Sistemas Fotovoltaicos e Hidrógeno Verde</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                        <label class="form-check-label small text-muted" for="termsCheck">
+                                            Certifico que soy instructor activo del SENA y acepto los términos de tratamiento de datos personales institucionales.
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4 text-center">
+                                    <button type="submit" class="btn btn-sena btn-lg px-5">
+                                        <i class="bi bi-send-fill me-2"></i>Enviar Pre-Inscripción
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <svg width="40" height="40" viewBox="0 0 100 100" class="me-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="22" r="14" fill="#39A900"/>
+                            <circle cx="50" cy="50" r="8" fill="#ffffff"/>
+                            <path d="M20 82 C30 55, 45 55, 50 70 C55 55, 70 55, 80 82 Z" fill="#39A900"/>
+                        </svg>
+                        <span class="fw-bold text-white fs-5">ENI - SENA</span>
+                    </div>
+                    <p class="small text-light opacity-75">
+                        Escuela Nacional de Instructores "Rodolfo Martínez Tono".
+                        Servicio Nacional de Aprendizaje SENA. Dirección General - Bogotá D.C., Colombia.
+                    </p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-lg-2">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#inicio"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
+                        <li><a href="#nosotros"><i class="bi bi-chevron-right small me-1"></i>Sobre ENI</a></li>
+                        <li><a href="#oferta"><i class="bi bi-chevron-right small me-1"></i>Cursos</a></li>
+                        <li><a href="#rutas"><i class="bi bi-chevron-right small me-1"></i>Rutas Formativas</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 col-lg-3">
+                    <h5>Plataformas SENA</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://oferta.senasofiaplus.edu.co" target="_blank"><i class="bi bi-box-arrow-up-right me-1 small"></i>SENA Sofía Plus</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-box-arrow-up-right me-1 small"></i>Ecosistema ZAJUNA</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-box-arrow-up-right me-1 small"></i>Sistema SENNOVA</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-box-arrow-up-right me-1 small"></i>Portal Institucional SENA</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 col-lg-3">
+                    <h5>Contacto Institucional</h5>
+                    <p class="small mb-1"><i class="bi bi-geo-alt-fill text-success me-2"></i>Calle 57 No. 8 - 69, Bogotá D.C.</p>
+                    <p class="small mb-1"><i class="bi bi-envelope-fill text-success me-2"></i>eni@sena.edu.co</p>
+                    <p class="small mb-0"><i class="bi bi-telephone-fill text-success me-2"></i>Línea Gratuita: 01 8000 910270</p>
+                </div>
+            </div>
+
+            <hr class="my-4 border-secondary opacity-25">
+
+            <div class="row align-items-center small">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 Servicio Nacional de Aprendizaje SENA. Todos los derechos reservados.
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="#" class="me-3">Políticas de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COURSE DETAILS MODAL -->
+    <div class="modal fade" id="courseDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 pb-0" style="background-color: var(--sena-navy); color: white;">
+                    <div>
+                        <span class="badge bg-success mb-2" id="modalCategory">Categoría</span>
+                        <h4 class="modal-title fw-bold" id="modalTitle">Título del Curso</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <span class="d-block text-muted small fw-bold">DURACIÓN</span>
+                                <span class="fs-6 fw-bold text-dark" id="modalDuration">--</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <span class="d-block text-muted small fw-bold">MODALIDAD</span>
+                                <span class="fs-6 fw-bold text-dark" id="modalModality">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold text-dark mb-2">Requisitos de Ingreso:</h6>
+                    <p class="text-secondary small mb-4" id="modalRequirements">--</p>
+
+                    <h6 class="fw-bold text-dark mb-2">Descripción y Objetivos:</h6>
+                    <p class="text-secondary small" id="modalDescription">--</p>
+                </div>
+                <div class="modal-footer border-0 bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sena btn-sm px-4" onclick="applyFromModal()">Inscribirme en este Curso</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS CONFIRMATION MODAL -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow text-center p-4">
+                <div class="modal-body">
+                    <div class="width-80 height-80 bg-success-subtle text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                        <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark mb-2">¡Pre-Inscripción Exitosa!</h4>
+                    <p class="text-muted small mb-4">
+                        Hemos recibido tus datos correctamente. Se ha enviado un correo de confirmación a tu cuenta institucional SENA con las instrucciones de acceso.
+                    </p>
+                    <button type="button" class="btn btn-sena px-4" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- 1. Interactive Course Filtering Logic ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('#filter-container .filter-btn');
+            const courseCards = document.querySelectorAll('.course-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Active class toggle
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedFilter = this.getAttribute('data-filter');
+
+                    courseCards.forEach(card => {
+                        if (selectedFilter === 'all' || card.getAttribute('data-category') === selectedFilter) {
+                            card.style.display = 'block';
+                            card.classList.add('animate__fadeIn');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // --- 2. Dynamic Course Modal Details ---
+        let selectedCourseName = '';
+
+        function showCourseDetails(title, category, duration, modality, requirements, description) {
+            selectedCourseName = title;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('modalDuration').textContent = duration;
+            document.getElementById('modalModality').textContent = modality;
+            document.getElementById('modalRequirements').textContent = requirements;
+            document.getElementById('modalDescription').textContent = description;
+
+            const modal = new bootstrap.Modal(document.getElementById('courseDetailModal'));
+            modal.show();
+        }
+
+        function applyFromModal() {
+            // Close details modal
+            const detailModalEl = document.getElementById('courseDetailModal');
+            const detailModal = bootstrap.Modal.getInstance(detailModalEl);
+            if (detailModal) detailModal.hide();
+
+            // Set value in registration form and scroll smoothly
+            const selectElem = document.getElementById('interestArea');
+            for (let i = 0; i < selectElem.options.length; i++) {
+                if (selectElem.options[i].text.includes(selectedCourseName) || selectElem.options[i].value.includes(selectedCourseName.substring(0, 5))) {
+                    selectElem.selectedIndex = i;
+                    break;
+                }
+            }
+
+            // Scroll to form section
+            document.getElementById('inscripcion').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- 3. Registration Form Submission Handling ---
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            // Trigger confirmation modal
+            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+
+            // Reset Form
+            document.getElementById('registrationForm').reset();
+        }
+
+        // --- 4. Video Placeholder Click Handler ---
+        function openVideoModal() {
+            // Friendly non-alert notification modal or action
+            const successModalEl = document.getElementById('successModal');
+            const modalBody = successModalEl.querySelector('.modal-body');
+            
+            // Temporary message insertion
+            const originalContent = modalBody.innerHTML;
+            modalBody.innerHTML = `
+                <div class="py-3">
+                    <i class="bi bi-play-btn-fill text-success display-3 mb-3"></i>
+                    <h4 class="fw-bold">Video Institucional ENI</h4>
+                    <p class="text-muted small">El reproductor de video institucional se desplegará en la plataforma oficial del SENA.</p>
+                    <button type="button" class="btn btn-sena mt-2 px-4" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            `;
+            
+            const modal = new bootstrap.Modal(successModalEl);
+            modal.show();
+
+            // Restore original content upon hidden event
+            successModalEl.addEventListener('hidden.bs.modal', function restore() {
+                modalBody.innerHTML = originalContent;
+                successModalEl.removeEventListener('hidden.bs.modal', restore);
+            });
+        }
+    </script>
+</body>
+</html>
